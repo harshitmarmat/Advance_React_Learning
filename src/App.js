@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useState } from "react";
+
+const Button = (props) => {
+  const [count,setCount] = useState(0);
+
+
+  return (
+    <h1  style={{color : props.color, textDecoration:props.underline?'underline':''}} onClick={(e)=>{
+      e.preventDefault();
+      setCount(count+props.increment);
+    }}>
+      I am a Button {count}
+    </h1>
+  )
+}
 
 function App() {
+  const newProps = {
+    increment:2,
+    underline : true
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Button {...newProps}   color="blue"/>
+      <Button {...newProps}   color="red"/>
+      <Button {...newProps}   color="green"/>
+      <Button {...newProps}   color="black"/> 
+    </Fragment>
   );
 }
 
